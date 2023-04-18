@@ -27,7 +27,7 @@
                   <div class="col-md-6 col-lg-7 d-flex align-items-center">
                     <div class="card-body p-4 p-lg-5 text-black">
       
-                      <form action="" method="">
+                      <form action="login_process.php" method="POST">
       
                         <div class="d-flex align-items-center mb-3 pb-1">
                           <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
@@ -37,17 +37,17 @@
                         <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Đăng nhập</h5>
       
                         <div class="form-outline mb-4">
-                          <input type="email" id="dn_taikhoan" class="form-control form-control-lg" />
-                          <label class="form-label" for="dn_taikhoan" name="" >Tài khoản:</label>
+                          <input type="text" name="taikhoan" class="form-control form-control-lg" />
+                          Tài khoản:
                         </div>
       
                         <div class="form-outline mb-4">
-                          <input type="password" id="dn_matkhau" class="form-control form-control-lg" />
-                          <label class="form-label" for="dn_matkhau" name="" >Mật khẩu:</label>
+                          <input type="password" name="password" class="form-control form-control-lg" />
+                          Mật khẩu:
                         </div>
       
                         <div class="pt-1 mb-4">
-                          <button class="btn btn-dark btn-lg btn-block"  type="submit">Đăng nhập</button>
+                          <button class="btn btn-dark btn-lg btn-block" >Đăng nhập</button>
                         </div>
       
                         <a class="small text-muted" href="#!">Quên mật khẩu?</a>
