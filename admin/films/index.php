@@ -35,6 +35,7 @@
         <th>release_year</th>
 		<th>Sửa</th>
 		<th>Xoá</th>
+		<th>Xem</th>
 	</tr>
 	<?php foreach ($result as $each): ?>
 		<tr>
@@ -54,6 +55,11 @@
 			<td>
 				<a href="delete.php?id=<?php echo $each['id'] ?>">
 					Xoá
+				</a>
+			</td>
+			<td>
+				<a href="../premieres/index.php?film_id=<?php echo $each['id'] ?>">
+					Xem
 				</a>
 			</td>
 		</tr>
