@@ -1,19 +1,13 @@
 <?php
-$customerName = $_POST['customer_name'];
-$customerEmail = $_POST['customer_email'];
-$premiereId = $_POST['premiere_id'];
-$seatId = $_POST['seat_id'];
-$price = $_POST['price'];
+require_once 'db/connect.php';
+session_start();
+
+require 'components/check_login.php';
 
 $stmt = $pdo->prepare("CALL add_ticket(?, ?, ?, ?, ?)");
 
-$stmt->bindParam(1, $customerName, PDO::PARAM_STR);
-$stmt->bindParam(2, $customerEmail, PDO::PARAM_STR);
-$stmt->bindParam(3, $premiereId, PDO::PARAM_INT);
-$stmt->bindParam(4, $seatId, PDO::PARAM_INT);
-$stmt->bindParam(5, $price, PDO::PARAM_STR);
-$stmt->execute();
+$stmt->execute(array($_SESSION['user']['id'], $_POST['premiere_id'], date('Y/m/d h:i:s', time()), 'pending', $_POST['seat_id']));
 
-header('Location: tickets.php');
-exit();
-?>
+// echo json_encode($_POST);
+
+header('Location: /tickets.php?premiere_id='.$_POST['premiere_id']);

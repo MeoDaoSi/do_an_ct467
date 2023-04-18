@@ -1,8 +1,10 @@
 <?php
 
 require_once 'db/connect.php';
-
 session_start();
-$_SESSION['is_logged_in'] = false;
+
+require 'components/check_login.php';
+
+unset($_SESSION['user']);
 
 header('Location: /');

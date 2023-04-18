@@ -1,4 +1,8 @@
 <?php
+
+require_once 'db/connect.php';
+
+
 $username = $_POST['username'];
 $fullname = $_POST['fullname'];
 $gender = $_POST['gender'];

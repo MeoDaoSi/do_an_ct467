@@ -81,7 +81,7 @@ CREATE TABLE `tickets` (
   `user_id` int NOT NULL,
   `premiere_id` int NOT NULL,
   `created_at` timestamp NOT NULL,
-  `status` int NOT NULL,
+  `status` char(10) NOT NULL,
   `seat_id` int NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf32;
 

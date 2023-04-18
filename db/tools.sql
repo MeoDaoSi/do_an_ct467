@@ -9,7 +9,7 @@ DELIMITER / / DROP PROCEDURE IF EXISTS `edit_user` / / CREATE PROCEDURE `edit_us
   IN p_password VARCHAR(50)
 ) BEGIN
 UPDATE
-  `admins`
+  `users`
 SET
   `username` = p_username,
   `fullname` = p_fullname,
@@ -29,7 +29,7 @@ END / / DROP PROCEDURE IF EXISTS `add_user` / / CREATE PROCEDURE `add_user`(
   IN p_password VARCHAR(50)
 ) BEGIN
 INSERT INTO
-  `admins` (
+  `users` (
     `username`,
     `fullname`,
     `gender`,
@@ -49,7 +49,7 @@ VALUES
 
 END / / DROP PROCEDURE IF EXISTS `remove_user` / / CREATE PROCEDURE `remove_user`(IN p_user_id INT) BEGIN
 DELETE FROM
-  `admins`
+  `users`
 WHERE
   `id` = p_user_id;
 
@@ -236,7 +236,7 @@ END / / DROP PROCEDURE IF EXISTS `add_ticket` / / CREATE PROCEDURE `add_ticket`(
   IN `p_user_id` INT,
   IN `p_premiere_id` INT,
   IN `p_created_at` TIMESTAMP,
-  IN `p_status` INT,
+  IN `p_status` char(10),
   IN `p_seat_id` INT
 ) BEGIN
 INSERT INTO
@@ -261,7 +261,7 @@ END / / DROP PROCEDURE IF EXISTS `edit_ticket` / / CREATE PROCEDURE `edit_ticket
   IN `p_user_id` INT,
   IN `p_premiere_id` INT,
   IN `p_created_at` TIMESTAMP,
-  IN `p_status` INT,
+  IN `p_status` char(10),
   IN `p_seat_id` INT
 ) BEGIN
 UPDATE
