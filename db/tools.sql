@@ -166,7 +166,7 @@ END / / DROP PROCEDURE IF EXISTS `add_premiere` / / CREATE PROCEDURE `add_premie
 ) BEGIN DECLARE remaining_seats SMALLINT;
 
 SET
-  remaining_seats = total_seats;
+  remaining_seats = p_total_seats;
 
 INSERT INTO
   `premieres` (film_id, start,end,
@@ -175,11 +175,11 @@ INSERT INTO
 )
 VALUES
   (
-    film_id,
-    start_time,
-    end_time,
-    total_seats,
-    remaining_seats
+    p_film_id,
+    p_start_time,
+    p_end_time,
+    p_total_seats,
+    p_remaining_seats
   );
 
 END / / DROP PROCEDURE IF EXISTS `edit_premiere` / / CREATE PROCEDURE `edit_premiere` (
@@ -281,9 +281,7 @@ DELETE FROM
 WHERE
   `id` = `p_ticket_id`;
 
-END / / drop function IF EXISTS getRemainingSeats / /
-
-CREATE FUNCTION getRemainingSeats(p_premiere_id INT) RETURNS INT DETERMINISTIC BEGIN DECLARE v_total_seats INT;
+END / / drop function IF EXISTS getRemainingSeats / / CREATE FUNCTION getRemainingSeats(p_premiere_id INT) RETURNS INT DETERMINISTIC BEGIN DECLARE v_total_seats INT;
 
 DECLARE v_sold_seats INT;
 
