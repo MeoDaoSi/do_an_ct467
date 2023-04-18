@@ -162,12 +162,9 @@ END / / DROP PROCEDURE IF EXISTS `add_premiere` / / CREATE PROCEDURE `add_premie
   IN p_film_id BIGINT,
   IN p_start_time TIMESTAMP,
   IN p_end_time TIMESTAMP,
-  IN p_total_seats SMALLINT
-) BEGIN DECLARE remaining_seats SMALLINT;
-
-SET
-  remaining_seats = p_total_seats;
-
+  IN p_total_seats SMALLINT,
+  IN p_remaining_seats SMALLINT
+) BEGIN
 INSERT INTO
   `premieres` (film_id, start,end,
   total_seats,
