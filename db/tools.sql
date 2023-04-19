@@ -303,11 +303,14 @@ SET
 
 RETURN v_remaining_seats;
 
-END / / -- select getRemainingSeats(1);  
-drop trigger IF EXISTS update_remaining_seats / / CREATE TRIGGER update_remaining_seats
+END / / 
+
+drop trigger IF EXISTS update_remaining_seats_on_add_ticket / / CREATE TRIGGER update_remaining_seats_on_add_ticket
 AFTER
 INSERT
-  ON tickets FOR EACH ROW BEGIN
+  ON tickets 
+  FOR EACH ROW 
+BEGIN
 UPDATE
   premieres
 SET
@@ -324,4 +327,37 @@ SET
 WHERE
   id = NEW.premiere_id;
 
+END / /
+
+drop trigger IF EXISTS update_remaining_seats_on_delete_ticket / / CREATE TRIGGER update_remaining_seats_on_delete_ticket
+AFTER
+delete
+  ON tickets 
+  FOR EACH ROW 
+BEGIN
+UPDATE
+  premieres
+SET
+  remaining_seats = (
+    total_seats - (
+      SELECT
+        COUNT(*)
+      FROM
+        tickets
+      WHERE
+        premiere_id = OLD.premiere_id
+    )
+  )
+WHERE
+  id = OLD.premiere_id;
+
+END / /
+
+CREATE TRIGGER `delete_premiere_and_ticket` 
+AFTER DELETE ON `films`
+FOR EACH ROW 
+BEGIN
+  DELETE FROM `premieres` WHERE `film_id` = OLD.`id`;
+  DELETE FROM `tickets` WHERE `premiere_id` IN 
+    (SELECT `id` FROM `premieres` WHERE `film_id` = OLD.`id`);
 END / /
