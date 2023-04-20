@@ -11,7 +11,7 @@
 <body>
 Đây là khu vực quản lý users
 <?php 
-    require_once '../menu.php';
+    require_once '../sidebar.php';
     require_once '../../db/connect.php';
 
     $stmt = $pdo->prepare('SELECT * FROM users');

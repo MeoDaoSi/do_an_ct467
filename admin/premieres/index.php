@@ -9,9 +9,8 @@
 	<title></title>
 </head>
 <body>
-Đây là khu vực quản lý premieres
 <?php 
-    require_once '../menu.php';
+    require_once '../sidebar.php';
 
     require_once '../../db/connect.php';
     $film_id = $_GET['film_id'];
