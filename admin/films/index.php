@@ -1,7 +1,5 @@
 <?php 
-    require '../check_admin.php'; 
-?>
-<?php
+    require '../check_admin.php';
     require_once '../../db/connect.php';
 
     $stmt = $pdo->prepare('SELECT * FROM films');
@@ -40,10 +38,10 @@
 			<div class="content-main">
 				<div class="view">
 					<h1>Xem thông tin phim</h1>
-					<a href="create.php" class="card-footer">
+					<a href="create.php" style="margin: 20px;">
 						<button class="btn btn-primary">Create</button>
 					</a>
-					<section>
+					<section style="margin-top: 20px;">
 						<div class="container row">
 						<div class="col-sm-12 col-6">
 						<?php foreach ($result as $each): ?>
