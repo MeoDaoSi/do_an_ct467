@@ -28,10 +28,8 @@
                                     <form action="/login_process.php" method="POST">
 
                                         <div class="d-flex align-items-center mb-3 pb-1">
-                                            <span class="h1 fw-bold mb-0">Login</span>
+                                            <span class="h1 fw-bold mb-0">Đăng nhập</span>
                                         </div>
-
-                                        <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Đăng nhập</h5>
 
                                         <div class="form-outline mb-4">
                                             <input type="text" name="username" class="form-control form-control-lg" />

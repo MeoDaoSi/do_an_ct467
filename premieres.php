@@ -32,8 +32,8 @@ $premieres = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body class="">
-    
-<?php require 'components/header.php'; ?><main class="container">
+
+    <?php require 'components/header.php'; ?><main class="container">
         <section class="">
             <h1>Các xuất chiếu phim: </h1>
             <h3><?php echo $film['name'] ?></h3>
@@ -42,13 +42,16 @@ $premieres = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="col-4  p-1 mr-3  ">
                         <div class="col p-5">
                             <div href="" data-cineplex="cinestar" class="btn btn-sm btn-showtime btn-outline-dark is-ticketing is-show-price  d-flex flex-column" data-reference="118366_e11fd1c2-438f-4ca3-b893-09c75eb89ba2">
-                                <span class="time" style="font-size: 50px;  "><?php echo substr($premiere['start'],0,11) ?></span>
-                                <span class="time" style="font-size: 50px;  "><?php echo substr($premiere['start'],11,5) ?></span>
+                                <span class="time" style="font-size: 50px;  "><?php echo substr($premiere['start'], 0, 11) ?></span>
+                                <span class="time" style="font-size: 50px;  "><?php echo substr($premiere['start'], 11, 5) ?></span>
                                 <a href="/tickets.php?premiere_id=<?php echo $premiere['id'] ?>" class="btn btn-primary">Mua Vé</a>
                             </div>
                         </div>
                     </div>
                 <?php endforeach ?>
+                <?php if (count($premieres) == 0): ?>
+                    <p class="m-5">Hiện không có xuất chiếu nào!</p>
+                <?php endif ?>
             </div>
         </section>
     </main>

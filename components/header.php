@@ -8,13 +8,13 @@
             <?php if (isset($_SESSION['user'])) : ?>
                 <div>
                     <a href="/my_tickets.php" class="btn btn-outline-primary">Vé</a>
-                    <a href="/logout_process.php" class="btn btn-primary">Logout</a>
+                    <a href="/logout_process.php" class="btn btn-primary">Đăng xuất</a>
                 </div>
             <?php endif ?>
             <?php if (!isset($_SESSION['user'])) : ?>
                 <div>
-                    <a href="/Register.php" class="btn btn-primary">Register</a>
-                    <a href="/login.php" class="btn btn-primary">Login</a>
+                    <a href="/Register.php" class="btn btn-primary">Đăng ký</a>
+                    <a href="/login.php" class="btn btn-primary">Đăng nhập</a>
                 </div>
             <?php endif ?>
         </div>

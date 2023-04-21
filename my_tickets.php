@@ -1,7 +1,6 @@
 <?php
 
 require_once 'db/connect.php';
-session_start();
 
 require 'components/check_login.php';
 
@@ -67,6 +66,9 @@ foreach ($tickets as $key => $ticket) {
                         </div>
                     </div>
                 <?php endforeach ?>
+                <?php if (count($tickets) == 0): ?>
+                    <p class="m-5">Bạn chưa có vé nào!</p>
+                <?php endif ?>
             </div>
         </section>
     </main>

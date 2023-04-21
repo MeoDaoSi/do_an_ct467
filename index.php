@@ -29,6 +29,15 @@ $films = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body class="">
     <?php require 'components/header.php'; ?>
     <main class="container">
+        <?php
+        if (isset($_SESSION['error'])) :
+        ?>
+            <div class="alert alert-danger mt-3" role="alert">
+                <li><?php echo $_SESSION['error']; ?></li>
+            </div>
+        <?php
+            unset($_SESSION['error']);
+        endif ?>
         <section class="  card p-5 mt-3">
             <H1 class="text-center">Thông tin phim </H1>
             <div class="row">

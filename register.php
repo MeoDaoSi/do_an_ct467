@@ -31,12 +31,12 @@
 
 
                                         <div class="form-outline mb-4">
-                                            <label class="form-label" for="dk_fuser" name="">Fullname:</label>
+                                            <label class="form-label" for="dk_fuser" name="">Họ và Tên:</label>
                                             <input type="text" name="fullname" class="form-control form-control-lg" />
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <label class="form-label" for="dk_email" name="">Username:</label>
+                                            <label class="form-label" for="dk_email" name="">Tài khoản:</label>
                                             <input type="Text" name="username" class="form-control form-control-lg" />
                                         </div>
 

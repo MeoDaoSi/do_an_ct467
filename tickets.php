@@ -41,7 +41,7 @@ function seatOccupied($seat_id, $tickets)
     <title>Cinema</title>
     <style>
         input {
-            visibility: hidden;
+            display: none;
         }
 
         label {
@@ -72,34 +72,41 @@ function seatOccupied($seat_id, $tickets)
                 <button class="btn btn-primary mb-3">Đặt vé</button>
                 <div class="card">
                     <table class="col m-auto text-center" style="font-size:15px">
-                        <tr>
-                            <th class="mr-3">*</th>
-                            <?php foreach (range(1, 20) as $i) : ?>
-                                <th class="mr-3"><?php echo $i ?></th>
-                            <?php endforeach ?>
-                        </tr>
-                        <?php foreach (range(1, 20) as $i) : ?>
+                        <thead>
                             <tr>
-                                <td><?php echo $i; ?></td>
-                                <?php foreach (range(1, 20) as $j) : ?>
-                                    <?php if ((seatOccupied(($i - 1) * 20 + $j, $tickets))) : ?>
-                                        <td>
-                                            <input type="radio" disabled>
-                                            <label class="text-center">
-                                                <?php echo $i . ' - ' . $j ?>
-                                            </label>
-                                        </td>
-                                    <?php else : ?>
-                                        <td>
-                                            <input type="radio" name="seat_id" id="seat_<?php echo (($i - 1) * 20 + $j); ?>" value="<?php echo (($i - 1) * 20 + $j); ?>">
-                                            <label class="" for="seat_<?php echo (($i - 1) * 20 + $j) ?>">
-                                                <?php echo $i . ' - ' . $j ?>
-                                            </label>
-                                        </td>
-                                    <?php endif ?>
+                                <td colspan="99" class="border p-2" style="font-size:50px;">Màn hình</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="mr-3">*</th>
+                                <?php foreach (range(1, 20) as $i) : ?>
+                                    <th class="mr-3"><?php echo $i ?></th>
                                 <?php endforeach ?>
                             </tr>
-                        <?php endforeach ?>
+                            <?php foreach (range(1, 20) as $i) : ?>
+                                <tr>
+                                    <td><?php echo $i; ?></td>
+                                    <?php foreach (range(1, 20) as $j) : ?>
+                                        <?php if ((seatOccupied(($i - 1) * 20 + $j, $tickets))) : ?>
+                                            <td>
+                                                <input type="radio" disabled>
+                                                <label class="text-center">
+                                                    <?php echo $i . ' - ' . $j ?>
+                                                </label>
+                                            </td>
+                                        <?php else : ?>
+                                            <td>
+                                                <input type="radio" name="seat_id" id="seat_<?php echo (($i - 1) * 20 + $j); ?>" value="<?php echo (($i - 1) * 20 + $j); ?>">
+                                                <label class="" for="seat_<?php echo (($i - 1) * 20 + $j) ?>">
+                                                    <?php echo $i . ' - ' . $j ?>
+                                                </label>
+                                            </td>
+                                        <?php endif ?>
+                                    <?php endforeach ?>
+                                </tr>
+                            <?php endforeach ?>
+                        </tbody>
 
                     </table>
                 </div>
