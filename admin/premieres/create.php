@@ -31,24 +31,24 @@
 			<div class="content-main">
 				<div class="view">
 					<section>
-						<h1>Thêm mới premiere</h1>
+						<h1>Thêm xuất chiếu</h1>
 						<!-- <div class="mt-5 card col-8 p-5"> -->
 						<form action="create_process.php" method="POST" class="col-8" enctype="multipart/form-data">
 							<input type="hidden" name="id" value="<?php echo $_GET['film_id'] ?>">
 							<div class="form-outline mb-4">           
-								<label class="form-label" for="tenphim">start</label>
+								<label class="form-label" for="tenphim">thời gian bắt đầu</label>
 								<input type="datetime-local" id="tenphim" class="form-control" name="start" />
 							</div>
 							<div class="form-outline mb-4">           
-								<label class="form-label">end</label>
+								<label class="form-label">thời gian kết thúc</label>
 								<input type="datetime-local" class="form-control" name="end" />
 							</div>
 							<div class="mb-3">
-								<label for="formFileMultiple" class="form-label">total_seats</label>
+								<label for="formFileMultiple" class="form-label">Số Ghế</label>
 								<input type="radio"  id="formFileMultiple" name="total_seats" value="400" checked>
 								400
 							</div>
-							<button type="submit" class="text-center btn btn-primary mb-3 mt-3"><i class="fa fa-save"></i>Lưu Premiere</button>
+							<button type="submit" class="text-center btn btn-primary mb-3 mt-3"><i class="fa fa-save"></i>Lưu</button>
 						</form>
 						<!-- </div> -->
 					</section>

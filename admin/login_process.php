@@ -13,6 +13,7 @@ $admins = $stmt->fetch(PDO::FETCH_ASSOC);
 if ($admins) {
     session_start();
     $_SESSION['is_logged_admin_in'] = true;
+    $_SESSION['username'] = $admins['username'];
 }
 
 header('Location: /admin/views');

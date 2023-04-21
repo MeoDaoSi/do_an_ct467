@@ -41,7 +41,7 @@
         <div class="content-wrapper">
             <div class="content-main">
                     <div class="view">
-                        <h1>Trang Chu Admin</h1>
+                        <h1>Trang chủ Admin</h1>
                     </div>
             </div>
         </div>

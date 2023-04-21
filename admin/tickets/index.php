@@ -1,13 +1,14 @@
 <?php 
-    require '../check_admin.php'; 
-    $id = $_GET['id'];
-
+    require '../check_admin.php';
     require_once '../../db/connect.php';
 
-    $stmt = $pdo->prepare('SELECT * FROM films WHERE id = :id');
-    $stmt->execute(array('id' => $id));
+    $premiere_id = $_GET['premiere_id'];
 
-    $film = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt = $pdo->prepare('SELECT * FROM tickets where premiere_id = :premiere_id');
+    $stmt->execute(array('premiere_id' => $premiere_id));
+
+    $result = $stmt->fetchAll();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,34 +39,36 @@
 		<div class="content-wrapper">
 			<div class="content-main">
 				<div class="view">
-					<section>
-						<h1>Edit film</h1>
-						<!-- <div class="mt-5 card col-8 p-5"> -->
-						<form action="edit_process.php" method="POST" class="col-8" enctype="multipart/form-data">
-                            <input type="hidden" name="id" value="<?php echo $id ?>">
-							<div class="form-outline mb-4">           
-								<label class="form-label" for="tenphim">Tên</label>
-								<input type="text" id="tenphim" class="form-control" name="name" value="<?php echo $film['name'] ?>" />
-							</div>
-							<div class="form-outline mb-4">
-								<label class="form-label" for="dcr">Mô tả</label>
-								<textarea class="form-control" id="dcr" name="description"><?php echo $film['description'] ?></textarea>
-							</div>
-							<div class="form-outline mb-4">           
-								<label class="form-label">Thời lượng(phút)</label>
-								<input type="text" class="form-control" name="length" value="<?php echo $film['length'] ?>" />
-							</div>
-							<div class="mb-3">
-								<label for="formFileMultiple" class="form-label">Ảnh</label>
-								<input type="text" class="form-control" id="formFileMultiple" name="cover_image" value="<?php echo $film['cover_image'] ?>">
-							</div>
-							<div class="form-outline mb-4">
-								<label class="form-label" for="dcr">Năm phát hành</label>
-								<input type="text" id="dcr" class="form-control" required autocomplete="off" name="release_year" value="<?php echo $film['release_year'] ?>" />
-							</div>
-							<button type="submit" class="text-center btn btn-primary mb-3 mt-3"><i class="fa fa-save"></i>Sửa</button>
-						</form>
-						<!-- </div> -->
+					<h1>Thông tin vé</h1>
+					<section style="margin-top: 20px;">
+						<div class="container row">
+						<div class="col-sm-12 col-6">
+							<table class="table table-dark">
+								<thead>
+									<tr>
+										<th scope="col">id</th>
+										<th scope="col">id user</th>
+										<th scope="col">id xuất chiếu</th>
+										<th scope="col">thời gian</th>
+										<th scope="col">trạng thái</th>
+										<th scope="col">id chỗ ngồi</th>
+									</tr>
+								</thead>
+								<?php foreach ($result as $each): ?>
+									<tbody>
+										<tr>
+										<td><?php echo $each['id'] ?></td>
+										<td><?php echo $each['user_id'] ?></td>
+										<td><?php echo $each['premiere_id'] ?></td>
+										<td><?php echo $each['created_at'] ?></td>
+										<td><?php echo $each['status'] ?></td>
+										<td><?php echo $each['seat_id'] ?></td>
+										</tr>
+									</tbody>
+								<?php endforeach ?>
+							</table>
+						</div> 
+						</div>
 					</section>
 				</div>
 			</div>

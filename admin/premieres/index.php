@@ -9,6 +9,11 @@
 
     $result = $stmt->fetchAll();
 
+    $stmt = $pdo->prepare('SELECT * FROM films WHERE id = :film_id');
+    $stmt->execute(array('film_id' => $film_id));
+
+    $film = $stmt->fetch(PDO::FETCH_ASSOC);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,14 +44,40 @@
 		<div class="content-wrapper">
 			<div class="content-main">
 				<div class="view">
-					<h1>Premiere</h1>
+					<section>
+						<h1>Chi Tiết Phim</h1>
+						<!-- <div class="mt-5 card col-8 p-5"> -->
+						<form action="" method="POST" class="col-8" enctype="multipart/form-data">
+							<div class="form-outline mb-4">           
+								<label class="form-label" for="tenphim">Tên</label>
+								<input type="text" id="tenphim" class="form-control" name="name" value="<?php echo $film['name'] ?>" />
+							</div>
+							<div class="form-outline mb-4">
+								<label class="form-label" for="dcr">Mô tả</label>
+								<textarea class="form-control" id="dcr" name="description"><?php echo $film['description'] ?></textarea>
+							</div>
+							<div class="form-outline mb-4">           
+								<label class="form-label">Thời lượng(phút)</label>
+								<input type="text" class="form-control" name="length" value="<?php echo $film['length'] ?>" />
+							</div>
+							<div class="mb-3">
+								<label for="formFileMultiple" class="form-label">Ảnh</label>
+								<input type="text" class="form-control" id="formFileMultiple" name="cover_image" value="<?php echo $film['cover_image'] ?>">
+							</div>
+							<div class="form-outline mb-4">
+								<label class="form-label" for="dcr">Năm phát hành</label>
+								<input type="text" id="dcr" class="form-control" required autocomplete="off" name="release_year" value="<?php echo $film['release_year'] ?>" />
+							</div>
+						</form>
+						<!-- </div> -->
+					</section>
+					<h1>Xuất chiếu</h1>
 					<a href="create.php?film_id=<?php echo $film_id ?>" style="margin: 20px;">
-						<button class="btn btn-primary">Create</button>
+						<button class="btn btn-primary">Thêm</button>
 					</a>
 					<section style="margin-top: 20px;">
 						<div class="container row">
 						<div class="col-sm-12 col-6">
-						<?php foreach ($result as $each): ?>
 							<table class="table table-dark">
 								<thead>
 									<tr>
@@ -59,8 +90,9 @@
 										<th scope="col">Hành động</th>
 									</tr>
 								</thead>
+								<?php foreach ($result as $each): ?>
 								<tbody>
-									<tr>
+									<tr onclick="handleClick(<?php echo $film_id ?>,<?php echo $each['id'] ?>)" role="button">
 										<td><?php echo $each['id'] ?></td>
 										<td><?php echo $each['film_id'] ?></td>
 										<td><?php echo $each['start'] ?></td>
@@ -73,8 +105,8 @@
 										</td>
 									</tr>
 								</tbody>
+								<?php endforeach ?>
 							</table>
-						<?php endforeach ?>
 						</div> 
 						</div>
 					</section>
@@ -82,6 +114,12 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		function handleClick(film_id,premiere_id) {
+			console.log('hello');
+			window.location.href = `../tickets/index.php?film_id=${film_id}&premiere_id=${premiere_id}`
+		}
+	</script>
 	<script src="/assets/plugins/jquery/jquery.min.js"></script>
 	<script src="/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
 	<script>

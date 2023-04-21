@@ -35,23 +35,23 @@
 						<!-- <div class="mt-5 card col-8 p-5"> -->
 						<form action="create_process.php" method="POST" class="col-8" enctype="multipart/form-data">
 							<div class="form-outline mb-4">           
-								<label class="form-label" for="tenphim">Name</label>
+								<label class="form-label" for="tenphim">Tên</label>
 								<input type="text" id="tenphim" class="form-control" name="name" />
 							</div>
 							<div class="form-outline mb-4">
-								<label class="form-label" for="dcr">description</label>
+								<label class="form-label" for="dcr">Mô tả</label>
 								<textarea class="form-control" id="dcr" name="description"></textarea>
 							</div>
 							<div class="form-outline mb-4">           
-								<label class="form-label">Length(minute)</label>
+								<label class="form-label">Thời lượng(phút)</label>
 								<input type="text" class="form-control" name="length" />
 							</div>
 							<div class="mb-3">
-								<label for="formFileMultiple" class="form-label">Link image</label>
+								<label for="formFileMultiple" class="form-label">Ảnh</label>
 								<input type="text" class="form-control" id="formFileMultiple" name="cover_image">
 							</div>
 							<div class="form-outline mb-4">
-								<label class="form-label" for="dcr">release_year</label>
+								<label class="form-label" for="dcr">Năm phát hành</label>
 								<input type="text" id="dcr" class="form-control" required autocomplete="off" name="release_year" />
 							</div>
 							<button type="submit" class="text-center btn btn-primary mb-3 mt-3"><i class="fa fa-save"></i> Lưu phim</button>

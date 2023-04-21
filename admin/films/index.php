@@ -39,27 +39,26 @@
 				<div class="view">
 					<h1>Xem thông tin phim</h1>
 					<a href="create.php" style="margin: 20px;">
-						<button class="btn btn-primary">Create</button>
+						<button class="btn btn-primary">Thêm</button>
 					</a>
 					<section style="margin-top: 20px;">
 						<div class="container row">
 						<div class="col-sm-12 col-6">
-						<?php foreach ($result as $each): ?>
 							<table class="table table-dark">
 								<thead>
 									<tr>
 										<th scope="col">id</th>
-										<th scope="col">name</th>
-										<th scope="col">description</th>
-										<th scope="col">length(minute)</th>
-										<th scope="col">cover_image</th>
-										<th scope="col">release_year</th>
-										<th scope="col">Hành động</th>
-										<th scope="col">Detail</th>
+										<th scope="col">tên</th>
+										<th scope="col">mô tả</th>
+										<th scope="col">thời lượng(phút)</th>
+										<th scope="col">ảnh</th>
+										<th scope="col">năm phát hành</th>
+										<th scope="col">hành động</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr>
+								<?php foreach ($result as $each): ?>
+									<tbody>
+										<tr onclick="handleClick(<?php echo $each['id'] ?>)" role="button">
 										<td><?php echo $each['id'] ?></td>
 										<td><?php echo $each['name'] ?></td>
 										<td><?php echo $each['description'] ?></td>
@@ -67,16 +66,13 @@
 										<td><img height="100" src="<?php echo $each['cover_image'] ?>"></td>
 										<td><?php echo $each['release_year'] ?></td>
 										<td>
-											<a href="edit.php?id=<?php echo $each['id'] ?>"><i class="fa fa-edit"></i></a></a>
+											<a href="edit.php?id=<?php echo $each['id'] ?>"><i class="fa fa-edit"></i></a>
 											<a href="delete.php?id=<?php echo $each['id'] ?>"><i class="fa fa-trash"></i></a>
 										</td>
-										<td>
-											<a href="../premieres/index.php?film_id=<?php echo $each['id'] ?>">View</a>
-										</td>
-									</tr>
-								</tbody>
+										</tr>
+									</tbody>
+								<?php endforeach ?>
 							</table>
-						<?php endforeach ?>
 						</div> 
 						</div>
 					</section>
@@ -84,6 +80,11 @@
 			</div>
 		</div>
 	</div>
+	<script>
+	function handleClick(id) {
+		window.location.href = `../premieres/index.php?film_id=${id}`
+	}
+	</script>
 	<script src="/assets/plugins/jquery/jquery.min.js"></script>
 	<script src="/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
 	<script>
