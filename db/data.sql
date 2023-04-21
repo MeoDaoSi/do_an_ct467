@@ -1,4 +1,6 @@
 
+use qtdl;
+
 INSERT INTO
   `admins` (
     `id`,

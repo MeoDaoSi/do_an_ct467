@@ -1,6 +1,6 @@
 -- users
 DELIMITER / / DROP PROCEDURE IF EXISTS `edit_user` / / CREATE PROCEDURE `edit_user`(
-  IN p_user_id INT,
+  IN p_user_id bigINT,
   IN p_username VARCHAR(50),
   IN p_fullname VARCHAR(50),
   IN p_gender TINYINT,
@@ -47,7 +47,7 @@ VALUES
     p_password
   );
 
-END / / DROP PROCEDURE IF EXISTS `remove_user` / / CREATE PROCEDURE `remove_user`(IN p_user_id INT) BEGIN
+END / / DROP PROCEDURE IF EXISTS `remove_user` / / CREATE PROCEDURE `remove_user`(IN p_user_id bigINT) BEGIN
 DELETE FROM
   `users`
 WHERE
@@ -55,7 +55,7 @@ WHERE
 
 END / / -- admins
 DROP PROCEDURE IF EXISTS `edit_admin` / / CREATE PROCEDURE `edit_admin`(
-  IN p_admin_id INT,
+  IN p_admin_id bigINT,
   IN p_username VARCHAR(50),
   IN p_fullname VARCHAR(50),
   IN p_gender TINYINT,
@@ -102,7 +102,7 @@ VALUES
     p_password
   );
 
-END / / DROP PROCEDURE IF EXISTS `remove_admin` / / CREATE PROCEDURE `remove_admin`(IN p_admin_id INT) BEGIN
+END / / DROP PROCEDURE IF EXISTS `remove_admin` / / CREATE PROCEDURE `remove_admin`(IN p_admin_id bigINT) BEGIN
 DELETE FROM
   `admins`
 WHERE
@@ -230,11 +230,11 @@ WHERE
   `id` = p_seat_id;
 
 END / / DROP PROCEDURE IF EXISTS `add_ticket` / / CREATE PROCEDURE `add_ticket`(
-  IN `p_user_id` INT,
-  IN `p_premiere_id` INT,
+  IN `p_user_id` bigINT,
+  IN `p_premiere_id` bigINT,
   IN `p_created_at` TIMESTAMP,
   IN `p_status` char(10),
-  IN `p_seat_id` INT
+  IN `p_seat_id` bigINT
 ) BEGIN
 INSERT INTO
   `tickets` (
@@ -254,12 +254,12 @@ VALUES
   );
 
 END / / DROP PROCEDURE IF EXISTS `edit_ticket` / / CREATE PROCEDURE `edit_ticket`(
-  IN `p_ticket_id` INT,
-  IN `p_user_id` INT,
-  IN `p_premiere_id` INT,
+  IN `p_ticket_id` bigINT,
+  IN `p_user_id` bigINT,
+  IN `p_premiere_id` bigINT,
   IN `p_created_at` TIMESTAMP,
   IN `p_status` char(10),
-  IN `p_seat_id` INT
+  IN `p_seat_id` bigINT
 ) BEGIN
 UPDATE
   `tickets`
@@ -272,13 +272,13 @@ SET
 WHERE
   `id` = `p_ticket_id`;
 
-END / / DROP PROCEDURE IF EXISTS `delete_ticket` / / CREATE PROCEDURE `delete_ticket`(IN `p_ticket_id` INT) BEGIN
+END / / DROP PROCEDURE IF EXISTS `delete_ticket` / / CREATE PROCEDURE `delete_ticket`(IN `p_ticket_id` bigINT) BEGIN
 DELETE FROM
   `tickets`
 WHERE
   `id` = `p_ticket_id`;
 
-END / / drop function IF EXISTS getRemainingSeats / / CREATE FUNCTION getRemainingSeats(p_premiere_id INT) RETURNS INT DETERMINISTIC BEGIN DECLARE v_total_seats INT;
+END / / drop function IF EXISTS getRemainingSeats / / CREATE FUNCTION getRemainingSeats(p_premiere_id bigINT) RETURNS INT DETERMINISTIC BEGIN DECLARE v_total_seats INT;
 
 DECLARE v_sold_seats INT;
 
@@ -303,14 +303,10 @@ SET
 
 RETURN v_remaining_seats;
 
-END / / 
-
-drop trigger IF EXISTS update_remaining_seats_on_add_ticket / / CREATE TRIGGER update_remaining_seats_on_add_ticket
+END / / drop trigger IF EXISTS update_remaining_seats_on_add_ticket / / CREATE TRIGGER update_remaining_seats_on_add_ticket
 AFTER
 INSERT
-  ON tickets 
-  FOR EACH ROW 
-BEGIN
+  ON tickets FOR EACH ROW BEGIN
 UPDATE
   premieres
 SET
@@ -327,14 +323,9 @@ SET
 WHERE
   id = NEW.premiere_id;
 
-END / /
-
-drop trigger IF EXISTS update_remaining_seats_on_delete_ticket / / CREATE TRIGGER update_remaining_seats_on_delete_ticket
+END / / drop trigger IF EXISTS update_remaining_seats_on_delete_ticket / / CREATE TRIGGER update_remaining_seats_on_delete_ticket
 AFTER
-delete
-  ON tickets 
-  FOR EACH ROW 
-BEGIN
+  delete ON tickets FOR EACH ROW BEGIN
 UPDATE
   premieres
 SET
@@ -351,13 +342,24 @@ SET
 WHERE
   id = OLD.premiere_id;
 
-END / /
+END / / CREATE TRIGGER `delete_premiere_and_ticket`
+AFTER
+  DELETE ON `films` FOR EACH ROW BEGIN
+DELETE FROM
+  `premieres`
+WHERE
+  `film_id` = OLD.`id`;
 
-CREATE TRIGGER `delete_premiere_and_ticket` 
-AFTER DELETE ON `films`
-FOR EACH ROW 
-BEGIN
-  DELETE FROM `premieres` WHERE `film_id` = OLD.`id`;
-  DELETE FROM `tickets` WHERE `premiere_id` IN 
-    (SELECT `id` FROM `premieres` WHERE `film_id` = OLD.`id`);
+DELETE FROM
+  `tickets`
+WHERE
+  `premiere_id` IN (
+    SELECT
+      `id`
+    FROM
+      `premieres`
+    WHERE
+      `film_id` = OLD.`id`
+  );
+
 END / /
