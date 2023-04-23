@@ -310,16 +310,7 @@ INSERT
 UPDATE
   premieres
 SET
-  remaining_seats = (
-    total_seats - (
-      SELECT
-        COUNT(*)
-      FROM
-        tickets
-      WHERE
-        premiere_id = NEW.premiere_id
-    )
-  )
+  remaining_seats = getRemainingSeats(NEW.premiere_id)
 WHERE
   id = NEW.premiere_id;
 
@@ -329,20 +320,11 @@ AFTER
 UPDATE
   premieres
 SET
-  remaining_seats = (
-    total_seats - (
-      SELECT
-        COUNT(*)
-      FROM
-        tickets
-      WHERE
-        premiere_id = OLD.premiere_id
-    )
-  )
+  remaining_seats = getRemainingSeats(OLD.premiere_id)
 WHERE
   id = OLD.premiere_id;
 
-END / / CREATE TRIGGER `delete_premiere_and_ticket`
+END / /drop trigger IF EXISTS delete_premiere_and_ticket / / CREATE TRIGGER `delete_premiere_and_ticket`
 AFTER
   DELETE ON `films` FOR EACH ROW BEGIN
 DELETE FROM

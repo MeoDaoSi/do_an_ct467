@@ -3,6 +3,7 @@
 				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 					<div class="info">
 						<a href="" class="d-block"><?php echo $_SESSION['username'] ?></a>
+						<a href="/admin/logout_process.php" class="d-block btn btn-primary btn-sm">Đăng xuất</a>
 					</div>
 				</div>
 				<!-- <div class="form-inline">

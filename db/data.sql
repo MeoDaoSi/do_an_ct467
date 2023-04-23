@@ -62,7 +62,7 @@ VALUES
     'Thế giới khủng long: Lãnh địa',
     'Thế giới khủng long: Lãnh địa là một bộ phim hành động khoa học viễn tưởng năm 2022 của Mỹ do Colin Trevorrow đạo diễn, người đã viết kịch bản cùng Emily Carmichael, dựa trên một câu chuyện của Trevorrow và cộng sự viết kịch bản của anh, Derek Connolly.',
     190,
-    'https://cocophim.com/wp-content/uploads/2023/01/the-gioi-khung-long-3-lanh-dia-jurassic-world-dominion.jpg',
+    'https://upload.wikimedia.org/wikipedia/vi/8/8b/Th%E1%BA%BF_gi%E1%BB%9Bi_kh%E1%BB%A7ng_long_-_L%C3%A3nh_%C4%91%E1%BB%8Ba.jpg',
     2022
   ),
   (
@@ -97,16 +97,16 @@ VALUES
     1,
     '2023-04-11 09:24:37',
     '2023-04-11 09:24:37',
-    120,
-    120
+    400,
+    400
   ),
   (
     2,
     2,
     '2023-04-11 09:24:58',
     '2023-04-11 09:24:58',
-    200,
-    200
+    400,
+    400
   );
 
 INSERT INTO

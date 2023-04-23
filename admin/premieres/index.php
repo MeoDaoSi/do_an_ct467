@@ -82,11 +82,11 @@
 								<thead>
 									<tr>
 										<th scope="col">id</th>
-										<th scope="col">film_id</th>
-										<th scope="col">start</th>
-										<th scope="col">end</th>
-										<th scope="col">total_seats</th>
-										<th scope="col">remaining_seats</th>
+										<th scope="col">id phim</th>
+										<th scope="col">thời gian bắt đầu</th>
+										<th scope="col">thời gian kết thúc</th>
+										<th scope="col">tổng số ghế</th>
+										<th scope="col">số ghế còn lại</th>
 										<th scope="col">Hành động</th>
 									</tr>
 								</thead>

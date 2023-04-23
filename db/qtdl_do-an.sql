@@ -29,7 +29,7 @@ SET
 --
 -- Database: `qtdl`
 --
-drop database qtdl;
+-- drop database qtdl;
 
 create database qtdl;
 
